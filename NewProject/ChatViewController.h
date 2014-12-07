@@ -16,8 +16,4 @@
 @property ChatDataModel *dataModel;
 @property NSString *senderPortrait;
 
-- (void)closePressed:(UIBarButtonItem *)sender;
-
-
-
 @end

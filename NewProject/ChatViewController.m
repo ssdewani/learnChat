@@ -34,10 +34,12 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)closePressed:(UIBarButtonItem *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[QBChat instance] logout];
 }
+
+
 
 - (void) loginToChat {
     
@@ -101,7 +103,8 @@
 - (void)chatRoomDidReceiveMessage:(QBChatMessage *)qbMessage fromRoomJID:(NSString *)roomJID{
     NSLog(@"New message: %@", qbMessage);
     
-    if ([qbMessage senderID] != self.currentUserID) {
+    
+    if ([qbMessage senderID] != self.currentUserID || [qbMessage delayed]) {
         NSString *senderID = [[qbMessage customParameters]objectForKey:@"userID"];
         NSString *senderDisplayName = [[qbMessage customParameters]objectForKey:@"userName"];
         NSString *senderPortraitFile = [[qbMessage customParameters]objectForKey:@"userPortrait"];
@@ -152,23 +155,26 @@
 
 
 - (void)chatDidLogin {
-    NSString * roomName = [NSString stringWithFormat:@"16525_5483a664535c12f5e501e3b0@muc.chat.quickblox.com"];
+    NSString * roomName = [NSString stringWithFormat:@"16525_54842b7a535c122e380141cf@muc.chat.quickblox.com"];
     QBChatRoom *groupChatRoom = [[QBChatRoom alloc]initWithRoomJID:roomName];
     self.chatRoom = groupChatRoom;
-    [self.chatRoom joinRoomWithHistoryAttribute:@{@"maxstanzas": @"0"}];
+    [self.chatRoom joinRoomWithHistoryAttribute:@{@"maxstanzas": @"50"}];
+    
     
 }
 
-- (void)completedWithResult:(Result *)result{
-    if (result.success && [result isKindOfClass:[QBChatDialogResult class]]) {
-        QBChatDialogResult *res = (QBChatDialogResult *)result;
-        NSLog(@"Dialog: %@", res.dialog);
-    }
-}
 
 - (void)chatDidFailWithError:(NSInteger)code {
     NSLog(@"%ld",code);
     [self loginToChat];
+}
+
+- (void)completedWithResult:(Result *)result{
+    if (result.success && [result isKindOfClass:QBChatHistoryMessageResult.class]) {
+        QBChatHistoryMessageResult *res = (QBChatHistoryMessageResult *)result;
+        NSArray *messages = res.messages;
+        NSLog(@"Messages: %@", messages);
+    }
 }
 
 
