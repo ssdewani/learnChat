@@ -41,6 +41,8 @@
     return YES;
 }
 
+
+
 - (void)confirmChanges:(id)sender {
     if (_userName && _userPortrait) {
         [self.mainViewController setUserName:_userName];

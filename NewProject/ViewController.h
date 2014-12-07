@@ -14,6 +14,8 @@
 @property (nonatomic,copy) NSString *userPortrait;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *portaitView;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
+@property (weak, nonatomic) IBOutlet UIButton *configureButton;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 

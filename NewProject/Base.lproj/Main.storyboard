@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="nd3-kJ-Z1p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qwV-Zu-e8N">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Splash View Controller-->
-        <scene sceneID="yiJ-QC-oBV">
-            <objects>
-                <viewController id="w7H-Zy-nWq" customClass="SplashViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sp4-At-o0v">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="i1a-Tp-X7R"/>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="startSegue" id="PNP-i9-xK5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ogd-NZ-1Qu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2121" y="128"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -31,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R8u-Ty-j0M">
-                                <rect key="frame" x="144" y="393" width="33" height="30"/>
+                                <rect key="frame" x="39" y="531" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="Chat">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,8 +22,12 @@
                                     <segue destination="jDx-c1-gOZ" kind="push" identifier="chatSegue" id="O4E-cp-cBt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8Iz-eJ-kFd">
+                                <rect key="frame" x="51" y="66" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SMr-dq-YCU">
-                                <rect key="frame" x="127" y="431" width="67" height="30"/>
+                                <rect key="frame" x="243" y="531" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="Configure">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,20 +37,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="YuI-mo-Qix">
-                                <rect key="frame" x="16" y="203" width="288" height="21"/>
+                                <rect key="frame" x="16" y="75" width="288" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8Iz-eJ-kFd">
-                                <rect key="frame" x="83" y="237" width="154" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat App" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="yBS-4V-uR9">
-                                <rect key="frame" x="-60" y="138" width="441" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -73,13 +48,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="ebr-Am-vBh"/>
                     <connections>
+                        <outlet property="chatButton" destination="R8u-Ty-j0M" id="Svk-Gh-lia"/>
+                        <outlet property="configureButton" destination="SMr-dq-YCU" id="oop-he-dpF"/>
                         <outlet property="portaitView" destination="8Iz-eJ-kFd" id="xmd-Fd-sxp"/>
                         <outlet property="welcomeLabel" destination="YuI-mo-Qix" id="M9S-qB-AnB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2734" y="128"/>
+            <point key="canvasLocation" x="3266" y="128"/>
         </scene>
         <!--Configure View Controller-->
         <scene sceneID="6l3-lV-t6L">
@@ -165,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1D-7I-6pI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="710"/>
+            <point key="canvasLocation" x="3718" y="710"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="dGf-cc-pWp">
@@ -180,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6y-Dw-A6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3158" y="34"/>
+            <point key="canvasLocation" x="3690" y="34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HMs-e1-9ov">
@@ -192,13 +169,28 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="w7H-Zy-nWq" kind="relationship" relationship="rootViewController" id="M6I-nG-yda"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2Z-NO-HP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1589" y="128"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2R7-hA-dNy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qwV-Zu-e8N" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aJE-Wh-T3i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="A7c-sv-HhH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXM-u6-9LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2734" y="128"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

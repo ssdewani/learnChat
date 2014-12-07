@@ -20,22 +20,60 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
-
+    [super viewDidLoad];
+    self.chatButton.enabled = NO;
+    self.configureButton.enabled = NO;
+    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
+    NSUUID *identifierForVendor = [[UIDevice currentDevice] identifierForVendor];
+    NSString *uuid = [identifierForVendor UUIDString];
+    
+    if (![defaults objectForKey:@"userID"]) {
+        [self signUpForChat:uuid];
+    } else {
+        [self enableMenus];
+    }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    self.navigationItem.hidesBackButton = YES;
+-(void) enableMenus {
+    self.chatButton.enabled = YES;
+    self.configureButton.enabled = YES;
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
     if ((![defaults objectForKey:@"userName"])||(![defaults objectForKey:@"userPortrait"])) {
         [self performSegueWithIdentifier: @"configureSegue" sender: self];
-    } else {
-        [self updateWelcomeLabel];
     }
+}
+
+- (void) signUpForChat:(NSString *) uuid {
     
- 
+    QBUUser *user = [QBUUser user];
+    user.password = uuid;
+    user.login = uuid;
+    
+    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+        NSLog(@"success");
+        [QBRequest signUp:user successBlock:^(QBResponse *response, QBUUser *user) {
+            // Success, do something
+            NSLog(@"yooho %@",uuid);
+            NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
+            [defaults setObject:uuid forKey:@"userID"];
+            [self enableMenus];
+        } errorBlock:^(QBResponse *response) {
+            // error handling
+            NSLog(@"error: %@", [response.error description]);
+            [self enableMenus];
+        }];
+    } errorBlock:^(QBResponse *response) {
+        // error handling
+        NSLog(@"error: %@", response.error);
+    }];
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self updateWelcomeLabel];
 }
 
 - (void)setUserName:(NSString *)userName {
@@ -61,14 +99,6 @@
         }
         [vc setMainViewController:self];
     }
-    if ([[segue identifier] isEqualToString:@"chatSegue"])
-    {
-    
-    }
-
-
-
-
 }
 
 
