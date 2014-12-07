@@ -10,14 +10,14 @@
 	<string>NewProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>99E09BCC73FB72FE081AC75C201D5505482183A8</key>
+		<key>4BED9D8FE80BA246A042889DEAB6AEFC6F98CDB8</key>
 		<string>https://github.com/ssdewani/learnChat.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>NewProject.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>99E09BCC73FB72FE081AC75C201D5505482183A8</key>
+		<key>4BED9D8FE80BA246A042889DEAB6AEFC6F98CDB8</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>99E09BCC73FB72FE081AC75C201D5505482183A8</string>
+	<string>4BED9D8FE80BA246A042889DEAB6AEFC6F98CDB8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>99E09BCC73FB72FE081AC75C201D5505482183A8</string>
+			<string>4BED9D8FE80BA246A042889DEAB6AEFC6F98CDB8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>learnChat</string>
 		</dict>
