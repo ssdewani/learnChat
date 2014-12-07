@@ -17,46 +17,6 @@
 
 @implementation SplashViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    NSUUID *identifierForVendor = [[UIDevice currentDevice] identifierForVendor];
-    NSString *uuid = [identifierForVendor UUIDString];
-    
-    if (![defaults objectForKey:@"userID"]) {
-        [self signUpForChat:uuid];
-    } else {
-        [self performSegueWithIdentifier: @"startSegue" sender: self];
-    }
-}
-
-
-- (void) signUpForChat:(NSString *) uuid {
-    
-    QBUUser *user = [QBUUser user];
-    user.password = uuid;
-    user.login = uuid;
-    
-    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
-        NSLog(@"success");
-        [QBRequest signUp:user successBlock:^(QBResponse *response, QBUUser *user) {
-            // Success, do something
-            NSLog(@"yooho %@",uuid);
-            NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-            [defaults setObject:uuid forKey:@"userID"];
-            [self performSegueWithIdentifier: @"startSegue" sender: self];
-        } errorBlock:^(QBResponse *response) {
-            // error handling
-            NSLog(@"error: %@", [response.error description]);
-            [self performSegueWithIdentifier: @"startSegue" sender: self];
-        }];
-    } errorBlock:^(QBResponse *response) {
-        // error handling
-        NSLog(@"error: %@", response.error);
-    }];
-}
-
-
 
 
 - (void)didReceiveMemoryWarning {
