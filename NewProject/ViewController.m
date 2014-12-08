@@ -26,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.chatButton.enabled = NO;
     self.configureButton.enabled = NO;
     self.dialogsTableView.hidden = YES;
     NSUUID *identifierForVendor = [[UIDevice currentDevice] identifierForVendor];
@@ -36,7 +35,6 @@
 
 
 -(void) enableMenus {
-    self.chatButton.enabled = YES;
     self.configureButton.enabled = YES;
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
     if ((![defaults objectForKey:@"userName"])||(![defaults objectForKey:@"userPortrait"])) {
