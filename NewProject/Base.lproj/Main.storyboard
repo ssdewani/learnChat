@@ -12,16 +12,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R8u-Ty-j0M">
-                                <rect key="frame" x="39" y="531" width="33" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="Chat">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="jDx-c1-gOZ" kind="push" identifier="chatSegue" id="O4E-cp-cBt"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8Iz-eJ-kFd">
                                 <rect key="frame" x="51" y="66" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,6 +26,27 @@
                                     <segue destination="ewn-hh-Eag" kind="push" identifier="configureSegue" id="trG-69-NwM"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WJA-aG-Q0N">
+                                <rect key="frame" x="16" y="114" width="294" height="409"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatRoomCellIdentifier" id="Ecs-cO-K5p">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ecs-cO-K5p" id="2Ar-aJ-SLx">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="jDx-c1-gOZ" kind="push" identifier="chatSegue" id="2gj-Zr-PEB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="SU7-XH-t8e"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="ixb-KB-f6z"/>
+                                </connections>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="YuI-mo-Qix">
                                 <rect key="frame" x="16" y="75" width="288" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,8 +59,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="ebr-Am-vBh"/>
                     <connections>
-                        <outlet property="chatButton" destination="R8u-Ty-j0M" id="Svk-Gh-lia"/>
                         <outlet property="configureButton" destination="SMr-dq-YCU" id="oop-he-dpF"/>
+                        <outlet property="dialogsTableView" destination="WJA-aG-Q0N" id="oMA-Zq-HIP"/>
                         <outlet property="portaitView" destination="8Iz-eJ-kFd" id="xmd-Fd-sxp"/>
                         <outlet property="welcomeLabel" destination="YuI-mo-Qix" id="M9S-qB-AnB"/>
                     </connections>
@@ -158,21 +169,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6y-Dw-A6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3690" y="34"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="HMs-e1-9ov">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nd3-kJ-Z1p" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gzy-Hm-oJe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t2Z-NO-HP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1589" y="128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2R7-hA-dNy">

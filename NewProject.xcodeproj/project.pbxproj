@@ -27,6 +27,7 @@
 		FAB989791A1F3ABC00ED16BE /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB989701A1F3ABC00ED16BE /* 7.png */; };
 		FAB9897A1A1F3ABC00ED16BE /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB989711A1F3ABC00ED16BE /* 8.png */; };
 		FAB9897D1A1F3E9E00ED16BE /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB9897C1A1F3E9E00ED16BE /* 0.png */; };
+		FACB77CE1A3506E500AF3069 /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB77CD1A3506E500AF3069 /* ChatService.m */; };
 		FACC6B641A1C746B0011CF84 /* ConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACC6B631A1C746B0011CF84 /* ConfigureViewController.m */; };
 		FACC6B671A1C747D0011CF84 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACC6B661A1C747D0011CF84 /* ChatViewController.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,8 @@
 		FAB989701A1F3ABC00ED16BE /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		FAB989711A1F3ABC00ED16BE /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		FAB9897C1A1F3E9E00ED16BE /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		FACB77CC1A3506E500AF3069 /* ChatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatService.h; sourceTree = "<group>"; };
+		FACB77CD1A3506E500AF3069 /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		FACC6B621A1C746B0011CF84 /* ConfigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureViewController.h; sourceTree = "<group>"; };
 		FACC6B631A1C746B0011CF84 /* ConfigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigureViewController.m; sourceTree = "<group>"; };
 		FACC6B651A1C747D0011CF84 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				FA0F68D41A26ABB7002A733C /* ChatDataModel.h */,
 				FA0F68D51A26ABB7002A733C /* ChatDataModel.m */,
 				FA0EA6461A1B3C5F0036CA07 /* Supporting Files */,
+				FACB77CC1A3506E500AF3069 /* ChatService.h */,
+				FACB77CD1A3506E500AF3069 /* ChatService.m */,
 			);
 			path = NewProject;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				FAB989691A1F372800ED16BE /* PortraitCollectionViewCell.m in Sources */,
 				FA0EA64C1A1B3C5F0036CA07 /* AppDelegate.m in Sources */,
 				FA0F68D61A26ABB7002A733C /* ChatDataModel.m in Sources */,
+				FACB77CE1A3506E500AF3069 /* ChatService.m in Sources */,
 				FA0EA6491A1B3C5F0036CA07 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

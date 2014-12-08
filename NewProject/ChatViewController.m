@@ -7,11 +7,11 @@
 //
 
 #import "ChatViewController.h"
+#import "ChatService.h"
 #import <Quickblox/Quickblox.h>
 
 @interface ChatViewController ()
 
-@property int currentUserID;
 @property QBChatRoom *chatRoom;
 
 @end
@@ -22,50 +22,49 @@
     [super viewDidLoad];
     
     self.dataModel = [[ChatDataModel alloc] init];
-
     self.senderId = [[[NSUserDefaults alloc] init] objectForKey:@"userID"];
     self.senderDisplayName = [[[NSUserDefaults alloc] init] objectForKey:@"userName"];
     self.senderPortrait = [[[NSUserDefaults alloc] init] objectForKey:@"userPortrait"];
+    self.chatRoom = [[QBChatRoom alloc]initWithRoomJID:_chatRoomJID];
+    [[ChatService instance]joinRoom:self.chatRoom];
+    
+   }
+
+- (void)viewWillAppear:(BOOL)animated {
     self.inputToolbar.hidden = YES;
-    [self loginToChat];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roomEnteredNotification:)
+                                                 name:@"roomEnteredNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReceivedNotification:)
+                                                 name:@"messageReceivedNotication" object:nil];
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[ChatService instance] leaveRoom:self.chatRoom];
+    self.chatRoom = nil;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[QBChat instance] logout];
+
+
+- (void) roomEnteredNotification:(NSNotification *)notification {
+    self.inputToolbar.hidden = NO;
+    self.inputToolbar.contentView.leftBarButtonItem.hidden = YES;
 }
 
-
-
-- (void) loginToChat {
-    
-    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    NSString * uuid = [defaults objectForKey:@"userID"];
-
-    QBSessionParameters *parameters = [QBSessionParameters new];
-    parameters.userLogin = uuid;
-    parameters.userPassword = uuid;
-    [QBRequest createSessionWithExtendedParameters:parameters successBlock:^(QBResponse *response, QBASession *session) {
-        QBUUser *currentUser = [QBUUser user];
-        currentUser.ID = session.userID; // your current user's ID
-        currentUser.password = uuid; // your current user's password
-        _currentUserID = (int)currentUser.ID;
-        // set Chat delegate
-        [QBChat instance].delegate = self;
-        
-        // login to Chat
-        [[QBChat instance] loginWithUser:currentUser];
-        
-     } errorBlock:^(QBResponse *response) {
-        // error handling
-        NSLog(@"error: %@", response.error);
-    }];
-    
-    // Do any additional setup after loading the view.
+- (void) messageReceivedNotification: (NSNotification *)notification {
+    QBChatMessage *message = notification.userInfo[@"message"];
+    NSString *roomJID = notification.userInfo[@"room"];
+    [self receivedMessage:message fromRoomJID:roomJID];
 }
 
 
@@ -88,7 +87,7 @@
 
     [qbMessage setCustomParameters:params];
     
-    [[QBChat instance] sendChatMessage:qbMessage  toRoom:self.chatRoom];
+    [[ChatService instance] sendMessage:qbMessage  toRoom:self.chatRoom];
     
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderId
@@ -100,9 +99,12 @@
     [self finishSendingMessage];
 }
 
-- (void)chatRoomDidReceiveMessage:(QBChatMessage *)qbMessage fromRoomJID:(NSString *)roomJID{
+- (void)receivedMessage:(QBChatMessage *)qbMessage fromRoomJID:(NSString *)roomJID{
     NSLog(@"New message: %@", qbMessage);
     
+    if (![roomJID isEqualToString:self.chatRoomJID]) {
+        return;
+    }
     
     if ([qbMessage senderID] != self.currentUserID || [qbMessage delayed]) {
         NSString *senderID = [[qbMessage customParameters]objectForKey:@"userID"];
@@ -132,50 +134,6 @@
 }
 
 
-#pragma mark - QBChat callbacks
-
-
-- (void)chatRoomDidEnter:(QBChatRoom *)room{
-    NSLog(@"room: %@", room);
-    self.inputToolbar.hidden = NO;
-    self.inputToolbar.contentView.leftBarButtonItem.hidden = YES;
-//    [[QBChat instance] requestRoomOnlineUsers:self.chatRoom];
-// joined here, now you can send and receive chat messages within this group dialog
-}
-
-
-- (void)chatDidReceiveMessage:(QBChatMessage *)message{
-    NSLog(@"New message: %@", message);
-}
-
-
-- (void)chatRoomDidReceiveListOfOnlineUsers:(NSArray *)users roomJID:(NSString *)roomJID{
-    NSLog(@"Room did receive list of online users %@, room JID: %@",users, roomJID);
-}
-
-
-- (void)chatDidLogin {
-    NSString * roomName = [NSString stringWithFormat:@"16525_54842b7a535c122e380141cf@muc.chat.quickblox.com"];
-    QBChatRoom *groupChatRoom = [[QBChatRoom alloc]initWithRoomJID:roomName];
-    self.chatRoom = groupChatRoom;
-    [self.chatRoom joinRoomWithHistoryAttribute:@{@"maxstanzas": @"50"}];
-    
-    
-}
-
-
-- (void)chatDidFailWithError:(NSInteger)code {
-    NSLog(@"%ld",code);
-    [self loginToChat];
-}
-
-- (void)completedWithResult:(Result *)result{
-    if (result.success && [result isKindOfClass:QBChatHistoryMessageResult.class]) {
-        QBChatHistoryMessageResult *res = (QBChatHistoryMessageResult *)result;
-        NSArray *messages = res.messages;
-        NSLog(@"Messages: %@", messages);
-    }
-}
 
 
 #pragma mark - JSQ Views

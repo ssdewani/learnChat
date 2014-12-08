@@ -14,6 +14,9 @@
 @interface ChatViewController : JSQMessagesViewController <JSQMessagesCollectionViewDataSource, JSQMessagesCollectionViewDelegateFlowLayout, QBChatDelegate, QBActionStatusDelegate>
 
 @property ChatDataModel *dataModel;
+@property NSString *chatRoomJID;
 @property NSString *senderPortrait;
+@property int currentUserID;
+
 
 @end
