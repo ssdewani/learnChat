@@ -29,7 +29,7 @@
     self.configureButton.enabled = NO;
     self.dialogsTableView.hidden = YES;
     NSUUID *identifierForVendor = [[UIDevice currentDevice] identifierForVendor];
-    _uuid = [identifierForVendor UUIDString];
+    self.uuid = [identifierForVendor UUIDString];
     [self createSession];
     }
 
