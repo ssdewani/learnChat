@@ -123,13 +123,16 @@
         }
         
         
-        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderID
-                                                 senderDisplayName:senderDisplayName
-                                                              date:date
-                                                              text:text];
+        if (senderID && senderDisplayName && date && text) {
+            JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderID
+                                                     senderDisplayName:senderDisplayName
+                                                                  date:date
+                                                                  text:text];
+            
+            [self.dataModel.messages addObject:message];
+            [self finishReceivingMessage];
+        }
         
-        [self.dataModel.messages addObject:message];
-        [self finishReceivingMessage];
     }
 }
 
