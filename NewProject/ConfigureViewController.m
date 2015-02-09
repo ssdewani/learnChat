@@ -21,6 +21,12 @@
     if (_userName) {
         [_userNameInput setText:_userName];
     }
+    if (_userPortrait) {
+        int portraitRow = [[_userPortrait substringToIndex:1] intValue];
+        NSIndexPath *index = [NSIndexPath indexPathForItem:portraitRow inSection:0];
+        [_userPortraitCollection selectItemAtIndexPath:index animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+    }
+    
     [_userNameInput setDelegate:self];
     // Do any additional setup after loading the view.
 }
@@ -45,6 +51,7 @@
 
 - (void)confirmChanges:(id)sender {
     if (_userName && _userPortrait) {
+        _userName = _userNameInput.text;
         [self.mainViewController setUserName:_userName];
         [self.mainViewController setUserPortrait:_userPortrait];
         UINavigationController *navController = [self navigationController];

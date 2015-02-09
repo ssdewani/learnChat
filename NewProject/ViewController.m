@@ -72,8 +72,12 @@
     if ([[segue identifier] isEqualToString:@"configureSegue"]) {
         ConfigureViewController *vc = [segue destinationViewController];
         if (_userName) {
-            [vc setUserName:_userName];            
+            [vc setUserName:_userName];
         }
+        if (_userPortrait) {
+            [vc setUserPortrait:_userPortrait];
+        }
+        
         [vc setMainViewController:self];
     } else if ([[segue identifier] isEqualToString:@"chatSegue"]) {
         ChatViewController *vc = [segue destinationViewController];
