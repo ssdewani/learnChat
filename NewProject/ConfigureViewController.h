@@ -14,11 +14,13 @@
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic,copy) NSString *userPortrait;
 @property (nonatomic,copy) NSString *favoriteTeam;
+@property NSMutableArray *dataArray;
 
 @property (weak,nonatomic) ViewController *mainViewController;
 @property (weak, nonatomic) IBOutlet UITextField *userNameInput;
 @property (weak, nonatomic) IBOutlet UITextField *favoriteTeamInput;
 @property (weak, nonatomic) IBOutlet UICollectionView *userPortraitCollection;
 - (IBAction)confirmChanges:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 
 @end

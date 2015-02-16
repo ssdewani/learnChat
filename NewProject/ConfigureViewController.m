@@ -14,7 +14,6 @@
 
 @property UIView *greyView;
 @property UIPickerView *teamPickerView;
-@property NSMutableArray *dataArray;
 
 @end
 
@@ -22,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.hidesBackButton = YES;
+
     if (_userName) {
         [_userNameInput setText:_userName];
     }
@@ -41,14 +42,6 @@
     [_userNameInput setDelegate:self];
     [_favoriteTeamInput setDelegate:self];
     
-    _dataArray = [[NSMutableArray alloc] init];
-    
-    [_dataArray addObject:@"Arsenal"];
-    [_dataArray addObject:@"Burnley"];
-    [_dataArray addObject:@"Chelsea"];
-    [_dataArray addObject:@"Manchester United"];
-    [_dataArray addObject:@"Liverpool"];
-    
     _greyView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [_greyView setBackgroundColor:[[UIColor clearColor] colorWithAlphaComponent:0.5]];
     
@@ -64,9 +57,11 @@
     [_teamPickerView setDelegate:self];
     _teamPickerView.showsSelectionIndicator = YES;
     _teamPickerView.backgroundColor = [UIColor whiteColor];
-    [_teamPickerView selectRow:2 inComponent:0 animated:YES];
     
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -90,9 +85,10 @@
     if (_userName && _userPortrait && _favoriteTeam) {
         _userName = _userNameInput.text;
         _favoriteTeam = _favoriteTeamInput.text;
-        [self.mainViewController setUserName:_userName];
-        [self.mainViewController setUserPortrait:_userPortrait];
-        [self.mainViewController setFavoriteTeam:_favoriteTeam];
+        NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
+        [defaults setValue:_userName forKey:@"userName"];
+        [defaults setValue:_userPortrait forKey:@"userPortrait"];
+        [defaults setValue:_favoriteTeam forKey:@"favoriteTeam"];
         UINavigationController *navController = [self navigationController];
         [navController popViewControllerAnimated:YES];
     } else {
@@ -104,10 +100,27 @@
 
 
 
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if (textField == self.favoriteTeamInput) {
+        
+        if ([_userNameInput isFirstResponder]) {
+            _userName = [_userNameInput text];
+            [_userNameInput resignFirstResponder];
+        }
+
         [self.view addSubview:_greyView];
+        int idx = 0;
+        if (_favoriteTeam) {
+            for  (int i=0; i<[_dataArray count]; i++) {
+                if ([[_dataArray objectAtIndex:i] isEqualToString:_favoriteTeam]) {
+                    idx = i;
+                }
+            }
+        }
+        [_teamPickerView selectRow:idx inComponent:0 animated:YES];
         [_greyView addSubview:_teamPickerView];
+        
         return NO;
     }
     
@@ -120,6 +133,7 @@
     [_teamPickerView removeFromSuperview];
     [_greyView removeFromSuperview];
 }
+
 
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -182,6 +196,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([_userNameInput isFirstResponder]) {
+        _userName = [_userNameInput text];
+        [_userNameInput resignFirstResponder];
+    }
+
+    
     _userPortrait = [NSString stringWithFormat:@"%d.png",(int)[indexPath row]];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor lightGrayColor];

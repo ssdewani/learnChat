@@ -171,6 +171,7 @@
                     <navigationItem key="navigationItem" id="PsH-vi-T0X"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="confirmButton" destination="PVk-mg-5Jo" id="x4J-BL-nyH"/>
                         <outlet property="favoriteTeamInput" destination="VjY-EK-HKt" id="QOh-E6-wDv"/>
                         <outlet property="userNameInput" destination="miB-Gx-HBJ" id="9kz-xR-bpx"/>
                         <outlet property="userPortraitCollection" destination="Dih-Dr-gp7" id="2xZ-FX-YSx"/>

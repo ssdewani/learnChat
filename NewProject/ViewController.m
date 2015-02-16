@@ -40,8 +40,9 @@
     if ((![defaults objectForKey:@"userName"])||(![defaults objectForKey:@"userPortrait"])||(![defaults objectForKey:@"favoriteTeam"])) {
         [self performSegueWithIdentifier: @"configureSegue" sender: self];
     }
-}
+    [self updateWelcomeLabel];
 
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,22 +50,35 @@
     [self updateWelcomeLabel];
 }
 
-- (void)setUserName:(NSString *)userName {
-    _userName = userName;
-    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    [defaults setValue:userName forKey:@"userName"];
-}
 
-- (void)setUserPortrait:(NSString *)userPortrait {
-    _userPortrait = userPortrait;
-    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    [defaults setValue:userPortrait forKey:@"userPortrait"];
-}
 
-- (void)setFavoriteTeam:(NSString *)favoriteTeam {
-    _favoriteTeam = favoriteTeam;
-    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    [defaults setValue:favoriteTeam forKey:@"favoriteTeam"];
+- (void)updateTags {
+    if (_favoriteTeam) {
+    QBUUser *user = [QBUUser user];
+    user.ID = _currentUser.ID; // you currently signed in user ID
+    user.tags = [[NSArray arrayWithObjects:_favoriteTeam, nil]mutableCopy];
+    
+    [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
+        // User updated successfully
+        NSLog(@"YEAHAHAHA");
+    } errorBlock:^(QBResponse *response) {
+        // Handle error
+    }];
+    
+    QBChatDialog *origDialog = [_dialogs objectAtIndex:0];
+    int index = 0;
+    int i = 0;
+    for (QBChatDialog *item in _dialogs) {
+        if ([item.name isEqualToString:_favoriteTeam]) {
+            index = i;
+        }
+        i++;
+    }
+    QBChatDialog *replDialog = [_dialogs objectAtIndex:index];
+    [_dialogs setObject:replDialog atIndexedSubscript:0];
+    [_dialogs setObject:origDialog atIndexedSubscript:index];
+    [_dialogsTableView reloadData];
+    }
 }
 
 
@@ -87,6 +101,15 @@
         if (_favoriteTeam) {
             [vc setFavoriteTeam:_favoriteTeam];
         }
+        if(_dialogs)
+        {
+            NSMutableArray *teamList = [[NSMutableArray alloc]init];
+            for (QBChatDialog *item in _dialogs) {
+                [teamList addObject:item.name];
+            }
+            [vc setDataArray:teamList];
+        }
+        
         
         [vc setMainViewController:self];
     } else if ([[segue identifier] isEqualToString:@"chatSegue"]) {
@@ -106,12 +129,18 @@
 
 - (void) updateWelcomeLabel {
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    _userName = [defaults objectForKey:@"userName"];
-    _userPortrait = [defaults objectForKey:@"userPortrait"];
+    self.userName = [defaults objectForKey:@"userName"];
+    self.userPortrait = [defaults objectForKey:@"userPortrait"];
+    self.favoriteTeam = [defaults objectForKey:@"favoriteTeam"];
     NSLog(@"%@",_userName);
-    NSString *labelText = [NSString stringWithFormat:@"Welcome %@",_userName];
-    [_welcomeLabel setText:labelText];
-    self.portaitView.image = [UIImage imageNamed:_userPortrait];
+    if (_userName && _userPortrait) {
+        NSString *labelText = [NSString stringWithFormat:@"Welcome %@",_userName];
+        [_welcomeLabel setText:labelText];
+        self.portaitView.image = [UIImage imageNamed:_userPortrait];
+    }
+    if (_dialogs) {
+        [self updateTags];
+    }
 
 }
 
@@ -222,6 +251,9 @@
         self.dialogsTableView.hidden = NO;
         [self.dialogsTableView reloadData];
         [self enableMenus];
+        [self updateTags];
+        
+
     }
 }
 
