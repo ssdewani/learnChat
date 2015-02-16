@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
-@interface ConfigureViewController : UIViewController <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ConfigureViewController : UIViewController <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic,copy) NSString *userPortrait;
+@property (nonatomic,copy) NSString *favoriteTeam;
+
 @property (weak,nonatomic) ViewController *mainViewController;
 @property (weak, nonatomic) IBOutlet UITextField *userNameInput;
+@property (weak, nonatomic) IBOutlet UITextField *favoriteTeamInput;
 @property (weak, nonatomic) IBOutlet UICollectionView *userPortraitCollection;
 - (IBAction)confirmChanges:(id)sender;
 

@@ -12,6 +12,10 @@
 
 @interface ConfigureViewController ()
 
+@property UIView *greyView;
+@property UIPickerView *teamPickerView;
+@property NSMutableArray *dataArray;
+
 @end
 
 @implementation ConfigureViewController
@@ -21,14 +25,47 @@
     if (_userName) {
         [_userNameInput setText:_userName];
     }
+
+    if (_favoriteTeam) {
+        [_favoriteTeamInput setText:_favoriteTeam];
+    }
+
+    
     if (_userPortrait) {
         int portraitRow = [[_userPortrait substringToIndex:1] intValue];
         NSIndexPath *index = [NSIndexPath indexPathForItem:portraitRow inSection:0];
         [_userPortraitCollection selectItemAtIndexPath:index animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
     }
     
+    
     [_userNameInput setDelegate:self];
-    // Do any additional setup after loading the view.
+    [_favoriteTeamInput setDelegate:self];
+    
+    _dataArray = [[NSMutableArray alloc] init];
+    
+    [_dataArray addObject:@"Arsenal"];
+    [_dataArray addObject:@"Burnley"];
+    [_dataArray addObject:@"Chelsea"];
+    [_dataArray addObject:@"Manchester United"];
+    [_dataArray addObject:@"Liverpool"];
+    
+    _greyView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    [_greyView setBackgroundColor:[[UIColor clearColor] colorWithAlphaComponent:0.5]];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapPicker)];
+    [_greyView addGestureRecognizer:tapGesture];
+    
+    
+    CGRect pickerRect = [_greyView bounds];
+    pickerRect.origin.y = pickerRect.size.height/1.5;
+    pickerRect.size.height = pickerRect.size.height/3.0;
+    _teamPickerView = [[UIPickerView alloc] initWithFrame:pickerRect];
+    [_teamPickerView setDataSource:self];
+    [_teamPickerView setDelegate:self];
+    _teamPickerView.showsSelectionIndicator = YES;
+    _teamPickerView.backgroundColor = [UIColor whiteColor];
+    [_teamPickerView selectRow:2 inComponent:0 animated:YES];
+    
 }
 
 
@@ -50,18 +87,61 @@
 
 
 - (void)confirmChanges:(id)sender {
-    if (_userName && _userPortrait) {
+    if (_userName && _userPortrait && _favoriteTeam) {
         _userName = _userNameInput.text;
+        _favoriteTeam = _favoriteTeamInput.text;
         [self.mainViewController setUserName:_userName];
         [self.mainViewController setUserPortrait:_userPortrait];
+        [self.mainViewController setFavoriteTeam:_favoriteTeam];
         UINavigationController *navController = [self navigationController];
         [navController popViewControllerAnimated:YES];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Pick name and avatar" message:@"Please select a name and avatar image" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Complete Profile" message:@"Please select a display name, favorite team and display image" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     
 }
+
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.favoriteTeamInput) {
+        [self.view addSubview:_greyView];
+        [_greyView addSubview:_teamPickerView];
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void) didTapPicker {
+    _favoriteTeamInput.text = [_dataArray objectAtIndex:[_teamPickerView selectedRowInComponent:0]];
+    _favoriteTeam = _favoriteTeamInput.text;
+    [_teamPickerView removeFromSuperview];
+    [_greyView removeFromSuperview];
+}
+
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// Total rows in our component.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [_dataArray count];
+}
+
+// Display each row's data.
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [_dataArray objectAtIndex: row];
+}
+
+// Do something with the selected row.
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    NSLog(@"You selected this: %@", [_dataArray objectAtIndex: row]);
+}
+
+
 
 /*
 #pragma mark - Navigation
@@ -124,7 +204,5 @@
     return UIEdgeInsetsMake(15, 15, 15, 15);
 }
 
-
-
-
 @end
+

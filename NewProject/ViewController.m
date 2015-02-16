@@ -37,7 +37,7 @@
 -(void) enableMenus {
     self.configureButton.enabled = YES;
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
-    if ((![defaults objectForKey:@"userName"])||(![defaults objectForKey:@"userPortrait"])) {
+    if ((![defaults objectForKey:@"userName"])||(![defaults objectForKey:@"userPortrait"])||(![defaults objectForKey:@"favoriteTeam"])) {
         [self performSegueWithIdentifier: @"configureSegue" sender: self];
     }
 }
@@ -61,6 +61,13 @@
     [defaults setValue:userPortrait forKey:@"userPortrait"];
 }
 
+- (void)setFavoriteTeam:(NSString *)favoriteTeam {
+    _favoriteTeam = favoriteTeam;
+    NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
+    [defaults setValue:favoriteTeam forKey:@"favoriteTeam"];
+}
+
+
 - (void)setUuid:(NSString *)uuid {
     _uuid = uuid;
     NSUserDefaults *defaults = [[NSUserDefaults alloc]init];
@@ -76,6 +83,9 @@
         }
         if (_userPortrait) {
             [vc setUserPortrait:_userPortrait];
+        }
+        if (_favoriteTeam) {
+            [vc setFavoriteTeam:_favoriteTeam];
         }
         
         [vc setMainViewController:self];

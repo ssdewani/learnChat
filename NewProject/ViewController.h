@@ -14,6 +14,8 @@
 @property (nonatomic,copy) NSString *uuid;
 @property (nonatomic,copy) NSString *userName;
 @property (nonatomic,copy) NSString *userPortrait;
+@property (nonatomic,copy) NSString *favoriteTeam;
+
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *portaitView;
 @property (weak, nonatomic) IBOutlet UIButton *configureButton;

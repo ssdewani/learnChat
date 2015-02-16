@@ -46,7 +46,7 @@
 		17FF524258B69FF0B92CE94F /* Pods-NewProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewProject/Pods-NewProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E2FBE607B61DAC2DEFBC514F /* Pods-NewProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewProject/Pods-NewProject.release.xcconfig"; sourceTree = "<group>"; };
 		F451D2A80D32C7DE4FEC4DFB /* libPods-NewProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA0EA6431A1B3C5F0036CA07 /* NewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0EA6431A1B3C5F0036CA07 /* FootballChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FootballChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0EA6471A1B3C5F0036CA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA0EA6481A1B3C5F0036CA07 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA0EA64A1A1B3C5F0036CA07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		FA0EA6511A1B3C5F0036CA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA0EA6531A1B3C5F0036CA07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA0EA6561A1B3C5F0036CA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		FA0EA65C1A1B3C5F0036CA07 /* NewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0EA65C1A1B3C5F0036CA07 /* FootballChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0EA6611A1B3C5F0036CA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA0EA6621A1B3C5F0036CA07 /* NewProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewProjectTests.m; sourceTree = "<group>"; };
 		FA0F68D41A26ABB7002A733C /* ChatDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDataModel.h; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		FA0EA6441A1B3C5F0036CA07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA0EA6431A1B3C5F0036CA07 /* NewProject.app */,
-				FA0EA65C1A1B3C5F0036CA07 /* NewProjectTests.xctest */,
+				FA0EA6431A1B3C5F0036CA07 /* FootballChat.app */,
+				FA0EA65C1A1B3C5F0036CA07 /* FootballChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,9 +203,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FA0EA6421A1B3C5F0036CA07 /* NewProject */ = {
+		FA0EA6421A1B3C5F0036CA07 /* FootballChat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA0EA6661A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "NewProject" */;
+			buildConfigurationList = FA0EA6661A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "FootballChat" */;
 			buildPhases = (
 				298207BAE80A597E6E1E0E54 /* Check Pods Manifest.lock */,
 				FA0EA63F1A1B3C5F0036CA07 /* Sources */,
@@ -217,14 +217,14 @@
 			);
 			dependencies = (
 			);
-			name = NewProject;
+			name = FootballChat;
 			productName = NewProject;
-			productReference = FA0EA6431A1B3C5F0036CA07 /* NewProject.app */;
+			productReference = FA0EA6431A1B3C5F0036CA07 /* FootballChat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FA0EA65B1A1B3C5F0036CA07 /* NewProjectTests */ = {
+		FA0EA65B1A1B3C5F0036CA07 /* FootballChatTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA0EA6691A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "NewProjectTests" */;
+			buildConfigurationList = FA0EA6691A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "FootballChatTests" */;
 			buildPhases = (
 				FA0EA6581A1B3C5F0036CA07 /* Sources */,
 				FA0EA6591A1B3C5F0036CA07 /* Frameworks */,
@@ -235,9 +235,9 @@
 			dependencies = (
 				FA0EA65E1A1B3C5F0036CA07 /* PBXTargetDependency */,
 			);
-			name = NewProjectTests;
+			name = FootballChatTests;
 			productName = NewProjectTests;
-			productReference = FA0EA65C1A1B3C5F0036CA07 /* NewProjectTests.xctest */;
+			productReference = FA0EA65C1A1B3C5F0036CA07 /* FootballChatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA0EA63E1A1B3C5F0036CA07 /* Build configuration list for PBXProject "NewProject" */;
+			buildConfigurationList = FA0EA63E1A1B3C5F0036CA07 /* Build configuration list for PBXProject "FootballChat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -271,8 +271,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA0EA6421A1B3C5F0036CA07 /* NewProject */,
-				FA0EA65B1A1B3C5F0036CA07 /* NewProjectTests */,
+				FA0EA6421A1B3C5F0036CA07 /* FootballChat */,
+				FA0EA65B1A1B3C5F0036CA07 /* FootballChatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -369,7 +369,7 @@
 /* Begin PBXTargetDependency section */
 		FA0EA65E1A1B3C5F0036CA07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FA0EA6421A1B3C5F0036CA07 /* NewProject */;
+			target = FA0EA6421A1B3C5F0036CA07 /* FootballChat */;
 			targetProxy = FA0EA65D1A1B3C5F0036CA07 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -492,7 +492,7 @@
 				INFOPLIST_FILE = NewProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FootballChat;
 			};
 			name = Debug;
 		};
@@ -516,7 +516,7 @@
 				INFOPLIST_FILE = NewProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FootballChat;
 			};
 			name = Release;
 		};
@@ -535,7 +535,7 @@
 				);
 				INFOPLIST_FILE = NewProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FootballChatTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewProject.app/NewProject";
 			};
 			name = Debug;
@@ -551,7 +551,7 @@
 				);
 				INFOPLIST_FILE = NewProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FootballChatTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewProject.app/NewProject";
 			};
 			name = Release;
@@ -559,7 +559,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA0EA63E1A1B3C5F0036CA07 /* Build configuration list for PBXProject "NewProject" */ = {
+		FA0EA63E1A1B3C5F0036CA07 /* Build configuration list for PBXProject "FootballChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0EA6641A1B3C5F0036CA07 /* Debug */,
@@ -568,7 +568,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA0EA6661A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "NewProject" */ = {
+		FA0EA6661A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "FootballChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0EA6671A1B3C5F0036CA07 /* Debug */,
@@ -577,7 +577,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA0EA6691A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "NewProjectTests" */ = {
+		FA0EA6691A1B3C5F0036CA07 /* Build configuration list for PBXNativeTarget "FootballChatTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA0EA66A1A1B3C5F0036CA07 /* Debug */,
